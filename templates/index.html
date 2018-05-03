@@ -1,0 +1,44 @@
+{%extends "base.html" %}
+{%block title%}Titulo{%endblock%}
+{%block content%}
+	<section id="main">
+		<!-- Thumbnails -->
+		<section class="thumbnails">
+			<div>
+				<a href="{{url_for("static", filename='images/fulls/01.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/01.jpg')}}" alt="" />
+					<h3>El castillo en el cielo</h3>
+				</a>
+				<a href="{{url_for("static", filename='images/fulls/02.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/02.jpg')}}" alt="" />
+					<h3>Lorem ipsum dolor sit amet</h3>
+				</a>
+			</div>
+			<div>
+				<a href="{{url_for("static", filename='images/fulls/03.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/03.jpg')}}" alt="" />
+					<h3>Lorem ipsum dolor sit amet</h3>
+				</a>
+				<a href="{{url_for("static", filename='images/fulls/04.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/04.jpg')}}" alt="" />
+					<h3>Lorem ipsum dolor sit amet</h3>
+				</a>
+				<a href="{{url_for("static", filename='images/fulls/05.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/05.jpg')}}" alt="" />
+					<h3>Lorem ipsum dolor sit amet</h3>
+				</a>
+			</div>
+			<div>
+				<a href="{{url_for("static", filename='images/fulls/06.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/06.jpg')}}" alt="" />
+					<h3>Lorem ipsum dolor sit amet</h3>
+				</a>
+				<a href="{{url_for("static", filename='images/fulls/07.jpg')}}">
+					<img src="{{url_for("static", filename='images/thumbs/07.jpg')}}" alt="" />
+					<h3>Lorem ipsum dolor sit amet</h3>
+				</a>
+			</div>
+		</section>
+
+	</section>
+{%endblock%}
