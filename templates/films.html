@@ -1,0 +1,14 @@
+{%extends "base.html" %}
+{%block title%}Peliculas Estudio Ghibli{%endblock%}
+{%block content%}
+<ol id="lista5">
+{% for peli in doc -%}
+	<li>Título: {{ peli["title"] }}</li>
+		<ul>
+			<li>Director: {{ peli["director"] }}</li>
+			<li>Productor: {{ peli["producer"] }}</li>
+			<li>Fecha estreno: {{ peli["release_date"] }}</li>
+		</ul>
+{% endfor -%}
+</ol>
+{%endblock%}
