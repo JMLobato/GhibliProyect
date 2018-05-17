@@ -1,14 +1,48 @@
 {%extends "base.html" %}
 {%block title%}Peliculas Estudio Ghibli{%endblock%}
 {%block content%}
-<ol id="lista5">
-{% for peli in doc -%}
-	<li>Título: {{ peli["title"] }}</li>
-		<ul>
-			<li>Director: {{ peli["director"] }}</li>
-			<li>Productor: {{ peli["producer"] }}</li>
-			<li>Fecha estreno: {{ peli["release_date"] }}</li>
-		</ul>
-{% endfor -%}
-</ol>
+<section id="main">
+	<section class="thumbnails">
+		<ol id="lista5">
+		{% for i in range(0,5) -%}
+			<li><strong>Título: {{ doc[i]["title"] }}</strong></li>
+				<ul>
+					<li>Director: {{ doc[i]["director"] }}</li>
+					<li>Productor: {{ doc[i]["producer"] }}</li>
+					<li>Fecha estreno: {{ doc[i]["release_date"] }}</li>
+				</ul>
+		{% endfor -%}
+		</ol>
+		<ol id="lista5">
+		{% for i in range(5,10) -%}
+			<li><strong>Título: {{ doc[i]["title"] }}</strong></li>
+				<ul>
+					<li>Director: {{ doc[i]["director"] }}</li>
+					<li>Productor: {{ doc[i]["producer"] }}</li>
+					<li>Fecha estreno: {{ doc[i]["release_date"] }}</li>
+				</ul>
+		{% endfor -%}
+		</ol>
+		<ol id="lista5">
+		{% for i in range(10,15) -%}
+			<li><strong>Título: {{ doc[i]["title"] }}</strong></li>
+				<ul>
+					<li>Director: {{ doc[i]["director"] }}</li>
+					<li>Productor: {{ doc[i]["producer"] }}</li>
+					<li>Fecha estreno: {{ doc[i]["release_date"] }}</li>
+				</ul>
+		{% endfor -%}
+		</ol>
+		<ol id="lista5">
+		{% for i in range(15,20) -%}
+			<li><strong>Título: {{ doc[i]["title"] }}</strong></li>
+				<ul>
+					<li>Director: {{ doc[i]["director"] }}</li>
+					<li>Productor: {{ doc[i]["producer"] }}</li>
+					<li>Fecha estreno: {{ doc[i]["release_date"] }}</li>
+				</ul>
+		{% endfor -%}
+		</ol>
+	</section>
+</section>
 {%endblock%}

@@ -2,10 +2,10 @@ from flask import Flask, url_for, render_template, request
 from jinja2 import Template
 import requests
 app = Flask(__name__)
-r=requests.get('https://ghibliapi.herokuapp.com/films')
-doc = r.json()
 @app.route('/')
 def inicio():
+	r=requests.get('https://ghibliapi.herokuapp.com/films')
+	doc = r.json()
 	lista=[]
 	for elem in doc:
 		lista.append(elem["title"])
@@ -13,24 +13,92 @@ def inicio():
 
 @app.route('/peliculas')
 def peliculas():
+	r=requests.get('https://ghibliapi.herokuapp.com/films')
+	doc = r.json()
 	return render_template("films.html",doc=doc)
 
-@app.route('/search')
-def search():
-	r=requests.get('https://ghibliapi.herokuapp.com/people')
-	doc2 = r.json()
-	r=requests.get('https://ghibliapi.herokuapp.com/locations')
-	doc3 = r.json()
-	r=requests.get('https://ghibliapi.herokuapp.com/species')
-	doc3 = r.json()
-	r=requests.get('https://ghibliapi.herokuapp.com/vehicles')
-	doc4 = r.json()
+@app.route('/search',methods=['GET','POST'])
+def search(q=None):
 	q=request.form.get("q")
-	return render_template("busqueda.html",doc=doc,doc2=doc2,doc3=doc3,doc4=doc4,q=q)
+	if q:
+		r=requests.get('https://ghibliapi.herokuapp.com/films')
+		doc = r.json()
+		lista=[]
+		lista2=[]
+		lista3=[]
+		for peli in doc:
+			if q == peli["title"]:
+				lista.append(peli["title"])
+				lista.append(peli["director"])
+				lista.append(peli["producer"])
+				lista.append(peli["release_date"])
+				cosa="peli"
+		r=requests.get('https://ghibliapi.herokuapp.com/people')
+		doc = r.json()
+		for person in doc:
+			if q == person["name"]:
+				lista.append(person["name"])
+				lista.append(person["gender"])
+				lista.append(person["age"])
+				for elem in person["films"]:
+					r=requests.get(elem)
+					lista2.append(r.json())
+				r=requests.get(person["species"])
+				lista3.append(r.json())
+				cosa="persona"
+		r=requests.get('https://ghibliapi.herokuapp.com/locations')
+		doc = r.json()
+		for local in doc:
+			if q == local["name"]:
+				lista.append(local["name"])
+				lista.append(local["climate"])
+				lista.append(local["terrain"])
+				for elem in local["films"]:
+					r=requests.get(elem)
+					lista2.append(r.json())
+				for elem in local["residents"]:
+					r=requests.get(elem)
+					lista3.append(r.json())
+				cosa="localizacion"
+		r=requests.get('https://ghibliapi.herokuapp.com/species')
+		doc = r.json()
+		for specimen in doc:
+			if q == specimen["name"]:
+				lista.append(specimen["name"])
+				lista.append(specimen["eye_colors"])
+				lista.append(specimen["hair_colors"])
+				for elem in specimen["films"]:
+					r=requests.get(elem)
+					lista2.append(r.json())
+				for elem in specimen["people"]:
+					r=requests.get(elem)
+					lista3.append(r.json())
+				cosa="specie"
+		r=requests.get('https://ghibliapi.herokuapp.com/vehicles')
+		doc = r.json()
+		for car in doc:
+			if q == car["name"]:
+				lista.append(car["name"])
+				lista.append(car["description"])
+				lista.append(car["vehicle_class"])
+				r=requests.get(car["films"])
+				lista2.append(r.json())
+				r=requests.get(car["pilot"])
+				lista3.append(r.json())
+				cosa="coche"
+		if cosa:
+			return render_template("busqueda.html",lista=lista,lista2=lista2,lista3=lista3,cosa=cosa)
+		else:
+			return render_template("search.html")
+	else:
+		return render_template("search.html")
 
 @app.errorhandler(404)
 def page_not_found(error):
 	return render_template("fallo.html"), 404
+@app.errorhandler(405)
+def search_not_found(error):
+	return render_template("search.html"), 405
 
 if __name__ == '__main__':
-	app.run('0.0.0.0', 5000, debug=True)
+	app.run('127.0.0.1', 5000, debug=True)

@@ -1,15 +1,70 @@
 {%extends "base.html" %}
-{%block title%}Peliculas Estudio Ghibli{%endblock%}
+{%block title%}Películas Estudio Ghibli{%endblock%}
 {%block content%}
-<h3>{{q}}</h3>
 <ol id="lista5">
-{% for peli in doc -%}
-	<li>Título: {{ peli["title"] }}</li>
+{% if cosa == "peli" %}
+<li>Título: {{ lista[0] }}</li>
 		<ul>
-			<li>Director: {{ peli["director"] }}</li>
-			<li>Productor: {{ peli["producer"] }}</li>
-			<li>Fecha estreno: {{ peli["release_date"] }}</li>
+			<li>Director: {{ lista[1] }}</li>
+			<li>Productor: {{ lista[2] }}</li>
+			<li>Fecha estreno: {{ lista[3] }}</li>
 		</ul>
-{% endfor -%}
+{% endif %}
+{% if cosa == "persona" %}
+<li>Nombre: {{ lista[0] }}</li>
+		<ul>
+			<li>Genero: {{ lista[1] }}</li>
+			<li>Edad: {{ lista[2] }}</li>
+			{% for elem in lista2 -%}
+			<li>Películas: {{ elem["title"] }}</li>
+			{% endfor -%}
+			{% for elem in lista3 -%}
+			<li>Especie: {{ elem["name"] }}</li>
+			{% endfor -%}
+		</ul>
+{% endif %}
+{% if cosa == "localizacion" %}
+<li>Ciudad: {{ lista[0] }}</li>
+		<ul>
+			<li>Clima: {{ lista[1] }}</li>
+			<li>Terreno: {{ lista[2] }}</li>
+			{% for elem in lista2 -%}
+			<li>Películas: {{ elem["title"] }}</li>
+			{% endfor -%}
+			<li>Residentes: </li><ul>
+			{% for elem in lista3 -%}
+			<li>{{ elem["name"] }}</li>
+			{% endfor -%}
+			</ul>
+		</ul>
+{% endif %}
+{% if cosa == "specie" %}
+<li>Especie: {{ lista[0] }}</li>
+		<ul>
+			<li>Color de ojos: {{ lista[1] }}</li>
+			<li>Color de pelo: {{ lista[2] }}</li>
+			<li>Películas:</li><ul>
+			{% for elem in lista2 -%}
+			<li>{{ elem["title"] }}</li>
+			{% endfor -%}</ul>
+			<li>Especimenes: </li><ul>
+			{% for elem in lista3 -%}
+			<li>{{ elem["name"] }}</li>
+			{% endfor -%}</ul>
+		</ul>
+{% endif %}
+{% if cosa == "coche" %}
+<li>Vehículo: {{ lista[0] }}</li>
+		<ul>
+			{% for elem in lista3 -%}
+			<li>Piloto: {{ elem["name"] }}</li>
+			{% endfor -%}
+			<li>Clase de vehiculo: {{ lista[2] }}</li>
+			{% for elem in lista2 -%}
+			<li>Películas: {{ elem["title"] }}</li>
+			{% endfor -%}
+			<li>Descripcion: {{ lista[1] }}</li>
+		</ul>
+{% endif %}
 </ol>
 {%endblock%}
