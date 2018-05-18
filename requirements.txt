@@ -14,11 +14,12 @@ Jinja2==2.10
 lxml==4.2.1
 MarkupSafe==1.0
 multidict==4.2.0
-pkg-resources==0.0.0
 post==1.0.1
 public==1.0.2
+python-dateutil==1.5
 query-string==1.0.1
 request==1.0.1
+requests==2.18.4
 six==1.11.0
 urllib3==1.22
 Werkzeug==0.14.1
