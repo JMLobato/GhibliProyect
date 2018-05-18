@@ -18,7 +18,7 @@ def peliculas():
 	return render_template("films.html",doc=doc)
 
 @app.route('/search',methods=['GET','POST'])
-def search(q=None):
+def search(q=None,cosa=None):
 	q=request.form.get("q")
 	if q:
 		r=requests.get('https://ghibliapi.herokuapp.com/films')
@@ -27,7 +27,7 @@ def search(q=None):
 		lista2=[]
 		lista3=[]
 		for peli in doc:
-			if q == peli["title"]:
+			if q.upper() == peli["title"].upper():
 				lista.append(peli["title"])
 				lista.append(peli["director"])
 				lista.append(peli["producer"])
@@ -36,7 +36,7 @@ def search(q=None):
 		r=requests.get('https://ghibliapi.herokuapp.com/people')
 		doc = r.json()
 		for person in doc:
-			if q == person["name"]:
+			if q.upper() == person["name"].upper():
 				lista.append(person["name"])
 				lista.append(person["gender"])
 				lista.append(person["age"])
@@ -49,7 +49,7 @@ def search(q=None):
 		r=requests.get('https://ghibliapi.herokuapp.com/locations')
 		doc = r.json()
 		for local in doc:
-			if q == local["name"]:
+			if q.upper() == local["name"].upper():
 				lista.append(local["name"])
 				lista.append(local["climate"])
 				lista.append(local["terrain"])
@@ -63,7 +63,7 @@ def search(q=None):
 		r=requests.get('https://ghibliapi.herokuapp.com/species')
 		doc = r.json()
 		for specimen in doc:
-			if q == specimen["name"]:
+			if q.upper() == specimen["name"].upper():
 				lista.append(specimen["name"])
 				lista.append(specimen["eye_colors"])
 				lista.append(specimen["hair_colors"])
@@ -77,7 +77,7 @@ def search(q=None):
 		r=requests.get('https://ghibliapi.herokuapp.com/vehicles')
 		doc = r.json()
 		for car in doc:
-			if q == car["name"]:
+			if q.upper() == car["name"].upper():
 				lista.append(car["name"])
 				lista.append(car["description"])
 				lista.append(car["vehicle_class"])
@@ -101,4 +101,5 @@ def search_not_found(error):
 	return render_template("search.html"), 405
 
 if __name__ == '__main__':
-	app.run('127.0.0.1', 5000, debug=True)
+    port=os.environ["PORT"]
+app.run('0.0.0.0',int(port), debug=True)
