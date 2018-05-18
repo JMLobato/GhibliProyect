@@ -1,6 +1,7 @@
 from flask import Flask, url_for, render_template, request
 from jinja2 import Template
 import requests
+import os
 app = Flask(__name__)
 @app.route('/')
 def inicio():
