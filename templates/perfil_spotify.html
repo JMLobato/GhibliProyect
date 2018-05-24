@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-{% block title %}oauth{% endblock %}
+{% block title %}Perfil{% endblock %}
 {% block content %}
-	
-    <p>Nombre: {{datos["id"]}}</p>
-    <p>Email: {{datos["email"]}}</p>
-    <p>País: {{datos["country"]}}</p>
-
-    <br/><a href="/logout_spotify">Cerrar</a>
+<ol>
+	<li>Perfil</li>
+	<ul>
+    	<li>Nombre: {{datos["id"]}}</li>
+    	<li>Email: {{datos["email"]}}</li>
+    	<li>País: {{datos["country"]}}</li>
+    </ul>
+</ol>
+    <br/><button type="button" class="btn btn-primary btn-sm">Cerrar Sesión</button>
 {% endblock %}
