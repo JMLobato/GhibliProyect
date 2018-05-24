@@ -94,9 +94,9 @@ def search(q=None,cosa=None):
 		if cosa:
 			return render_template("busqueda.html",lista=lista,lista2=lista2,lista3=lista3,cosa=cosa)
 		else:
-			abort(404)
+			return render_template("search.html")
 	else:
-		abort(404)
+		return render_template("search.html")
 
 redirect_uri_sp = 'https://proyecto-ghibli.herokuapp.com/spotify_callback'
 scope_sp = 'user-read-private user-read-email'
