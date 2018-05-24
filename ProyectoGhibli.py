@@ -5,7 +5,6 @@ from requests_oauthlib import OAuth2Session
 from urllib.parse import parse_qs
 import os,json
 app = Flask(__name__)   
-app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/')
 def inicio():
