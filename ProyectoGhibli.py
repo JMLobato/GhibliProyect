@@ -94,9 +94,9 @@ def search(q=None,cosa=None):
 		if cosa:
 			return render_template("busqueda.html",lista=lista,lista2=lista2,lista3=lista3,cosa=cosa)
 		else:
-			return render_template("search.html")
+			abort(404)
 	else:
-		return render_template("search.html")
+		abort(404)
 
 redirect_uri_sp = 'https://proyecto-ghibli.herokuapp.com/spotify_callback'
 scope_sp = 'user-read-private user-read-email'
@@ -156,9 +156,10 @@ def salir_spotify():
 @app.errorhandler(404)
 def page_not_found(error):
 	return render_template("fallo.html"), 404
-@app.errorhandler(404)
+	
+@app.errorhandler(405)
 def search_not_found(error):
-	return render_template("search.html"), 404
+	return render_template("search.html"), 405
 
 if __name__ == '__main__':
 	port=os.environ["PORT"]
