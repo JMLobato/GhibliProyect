@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Perfil{% endblock %}
 {% block content %}
-<ol id="lista5">
+<ol id="lista5" style="float:left">
 	<li>Perfil</li>
 	<ul>
     	<li>Nombre: {{datos["id"]}}</li>
@@ -10,5 +10,5 @@
     </ul>
 </ol>
 <iframe src="https://open.spotify.com/embed?uri=spotify:album:49lcv6t0GsJVxcoD8hjgPp" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="float:right;position:relative"></iframe>
-<br/><button type="button" class="btn btn-primary btn-sm" style="bottom:5px;">Cerrar Sesión</button>
+<br/><button type="button" class="btn btn-primary btn-sm">Cerrar Sesión</button>
 {% endblock %}
