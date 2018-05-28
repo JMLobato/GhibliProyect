@@ -2210,9 +2210,9 @@
 /* Footer */
 
 	#footer {
-		position: absolute;
+		position: relative;
 		text-align: center;
-		padding: 4em 0 4em 0;
+		padding: 25em 0 25em 0;">
 	}
 
 		#footer:before {
