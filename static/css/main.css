@@ -1406,7 +1406,7 @@
 
 	body {
 		background-color: #000;
-		background-image: url("http://127.0.0.1:5000/static/images/bg.jpg");
+		background-image: url("https://proyecto-ghibli.herokuapp.com/static/images/bg.jpg");
 		background-size: cover;
 		background-position: top center;
 	}
