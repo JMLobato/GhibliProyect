@@ -150,7 +150,7 @@ def info_perfil_usuario_spotify():
         return redirect('/perfil')
 
 @app.route('/logout_spotify')
-def salir_spotify():
+def salirspotify():
     session.pop("token_sp",None)
     return redirect("/")
 
