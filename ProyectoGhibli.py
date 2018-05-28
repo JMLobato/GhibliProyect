@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request,session
+from flask import Flask,render_template,redirect,request,session,abort
 from jinja2 import Template
 import requests
 from requests_oauthlib import OAuth2Session
@@ -94,9 +94,9 @@ def search(q=None,cosa=None):
 		if cosa:
 			return render_template("busqueda.html",lista=lista,lista2=lista2,lista3=lista3,cosa=cosa)
 		else:
-			return render_template("search.html")
+			abort(405)
 	else:
-		return render_template("search.html")
+		abort(405)
 
 redirect_uri_sp = 'https://proyecto-ghibli.herokuapp.com/spotify_callback'
 scope_sp = 'user-read-private user-read-email'
@@ -154,7 +154,7 @@ def salir_spotify():
     return redirect("/")
 
 @app.route('/search2',methods=['GET','POST'])
-def search(w=None,cosa=None):
+def search2(w=None,cosa=None):
 	w=request.form.get("w")
 	if w:
 		return render_template("busqueda2.html")
