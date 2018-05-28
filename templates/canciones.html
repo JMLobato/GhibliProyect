@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+<ol id="lista5">
+	<li>Perfil</li>
+	<ul>
+    	<li>Nombre: {{datos["id"]}}</li>
+    	<li>Email: {{datos["email"]}}</li>
+    	<li>País: {{datos["country"]}}</li>
+    </ul>
+</ol>
+<iframe id='search-box' src="https://open.spotify.com/embed?uri=spotify:album:1DFixLWuPkv3KT3TnV35m3" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<br/><button type="button" class="btn btn-primary btn-sm">Cerrar Sesión</button>
+{% endblock %}
