@@ -153,12 +153,6 @@ def salir_spotify():
     session.pop("token_sp",None)
     return redirect("/")
 
-@app.route('/search2',methods=['GET','POST'])
-def search2(w=None,cosa=None):
-	w=request.form.get("w")
-	if w:
-		return render_template("busqueda2.html")
-
 @app.errorhandler(404)
 def page_not_found(error):
 	return render_template("fallo.html"), 404
